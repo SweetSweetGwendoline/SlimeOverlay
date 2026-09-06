@@ -3,33 +3,34 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="The community wiki for jedm_nz's Slime Overlay. Browse outfits and find future achievement and command guides.">
-  <title>Outfits · Slime Overlay Wiki</title>
+  <meta name="description" content="The community wiki for jedm_nz's Slime Overlay. Browse outfits and find future card, achievement, and command guides.">
+  <title>Slime Overlay Wiki</title>
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="./styles.css?v=2">
-  <script type="module" src="./app.js"></script>
+  <link rel="stylesheet" href="./styles.css?v=7">
+  <script type="module" src="./app.js?v=7"></script>
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
   <header class="site-header"><div class="header-inner">
-    <a class="brand" href="#outfits"><img src="./favicon.svg" alt="" width="42" height="42"><span>SLIME OVERLAY <small>COMMUNITY WIKI</small></span></a>
-    <a class="channel-link" href="https://www.twitch.tv/jedm_nz" target="_blank" rel="noopener noreferrer">Watch jedm_nz <span aria-hidden="true">↗</span></a>
+    <a class="brand" href="#" aria-label="Slime Overlay Wiki home"><img src="./favicon.svg" alt="" width="42" height="42"><span>SLIME OVERLAY <small>COMMUNITY WIKI</small></span></a>
+    <a class="channel-link" href="https://www.twitch.tv/jedm_nz" target="_blank" rel="noopener noreferrer" aria-label="jedm_nz on Twitch"><svg class="twitch-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="currentColor" aria-hidden="true"><path d="M11.571 4.714h1.715v5.143h-1.715zm4.715 0H18v5.143h-1.714zM6 0 1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714z"/></svg> twitch.tv/jedm_nz</a>
   </div></header>
   <div class="shell">
     <aside class="sidebar" aria-label="Wiki sidebar">
       <p class="eyebrow">THE WIKI</p>
       <nav aria-label="Wiki sections">
         <a href="#outfits" data-section="outfits"><span aria-hidden="true">▦</span> Outfits</a>
+        <a href="#cards" data-section="cards"><span aria-hidden="true">▤</span> Cards</a>
         <a href="#achievements" data-section="achievements"><span aria-hidden="true">◇</span> Achievements</a>
         <a href="#commands" data-section="commands"><span aria-hidden="true">›_</span> Commands</a>
       </nav>
       <div class="sidebar-note"><span class="status-dot"></span> A wiki in the making<p>More slime knowledge is on the way.</p></div>
     </aside>
     <main id="main" tabindex="-1">
-      <div class="breadcrumb">Slime Overlay <span>/</span> <span id="crumb">Outfits</span></div>
-      <section class="intro"><p class="eyebrow">JEDM_NZ’S SLIME OVERLAY</p><h1 id="page-title">Outfits</h1></section>
-      <section id="outfits" aria-labelledby="collection-title">
-        <div class="section-heading"><h2 id="collection-title">Outfit collection</h2><span id="total-count" class="count">Loading…</span></div>
+      <div id="breadcrumb" class="breadcrumb" hidden>Slime Overlay <span>/</span> <span id="crumb"></span></div>
+      <section id="section-intro" class="intro" hidden><h1 id="page-title"></h1></section>
+      <section id="outfits" aria-labelledby="page-title" hidden>
+        <div class="section-heading" style="justify-content:flex-end"><span id="total-count" class="count">Loading…</span></div>
         <div class="collection-panel">
           <div class="table-scroll" role="region" aria-label="Sortable outfits table" tabindex="0"><table><caption class="sr-only">Outfits. Select a column heading to sort.</caption><thead id="table-head"></thead><tbody id="table-body"></tbody></table></div>
           <div id="empty-state" class="empty-state" hidden><div class="empty-icon" aria-hidden="true">▦</div><h3 id="empty-title">The wardrobe is waiting</h3><p id="empty-description">No outfits have been added yet. Check back for the first collection.</p></div>
@@ -39,6 +40,6 @@
     </main>
     <footer class="site-footer"><span>SLIME OVERLAY WIKI</span><span>Made for the jedm_nz community.</span></footer>
   </div>
-  <noscript><p class="noscript">Enable JavaScript to browse outfits, achievements, and commands. You can also <a href="./outfits/outfits.csv">download the outfit data</a>.</p></noscript>
+  <noscript><p class="noscript">Enable JavaScript to browse outfits, cards, achievements, and commands. You can also <a href="./outfits/outfits.csv">download the outfit data</a>.</p></noscript>
 </body>
 </html>

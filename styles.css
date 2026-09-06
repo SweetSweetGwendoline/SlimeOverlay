@@ -9,10 +9,10 @@
 .shell>.site-footer{grid-column:1 / -1;width:100%;max-width:none;margin:40px 0 0}
 table{table-layout:fixed;font-variant-numeric:tabular-nums}
 th{white-space:normal;overflow-wrap:anywhere;vertical-align:bottom}
-th:first-child{width:14%}
-th:last-child{width:11%}
-th button{padding:12px 5px;font-size:12px;letter-spacing:0;line-height:1.4;min-height:62px;overflow-wrap:anywhere}
-.sort-icon{display:block;margin:3px 0 0}
+th:first-child{width:148px}
+th button{display:flex;align-items:center;gap:8px;padding:12px 5px;font-size:12px;letter-spacing:0;line-height:1.4;min-height:62px;overflow-wrap:normal}
+th button>span:first-child{min-width:0}
+.sort-icon{display:inline-block;flex-shrink:0;margin:0}
 td{padding:11px 5px;font-size:13px;line-height:1.5}
 th:first-child button,td:first-child{padding-left:12px}
 @media(max-width:1100px){
@@ -29,3 +29,11 @@ th:first-child button,td:first-child{padding-left:12px}
   nav a{padding:12px 6px;flex:1;justify-content:center;font-size:13px}
   nav a span{display:none}
 }
+@media(max-width:420px){
+  nav{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:4px}
+}
+.channel-link{display:inline-flex;align-items:center;gap:8px}.twitch-logo{flex-shrink:0}
+.outfit-image{display:block;width:128px;height:128px;object-fit:contain;margin:auto}
+td.outfit-image-cell{padding:8px 10px}
+.outfit-image-heading{padding:12px 10px;text-align:left;vertical-align:middle;font-size:12px}
+td:nth-child(2){color:#d0ebff}
