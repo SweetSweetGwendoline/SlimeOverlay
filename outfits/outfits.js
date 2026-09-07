@@ -1,9 +1,12 @@
-import { loadCSV, compareValues } from '../csv.js?v=10';
-import { createImageCell, createTextCell, updateSortHeading } from '../table.js?v=10';
+import { loadCSV, compareValues } from '../csv.js';
+import { createImageCell, createTextCell, updateSortHeading } from '../table.js';
 
 const DATA_URL = new URL('./outfits.csv', import.meta.url);
 const IMAGE_DIRECTORY_URL = new URL('./', import.meta.url);
 const OUTFIT_IMAGE_SIZE = { width: 128, height: 128 };
+const DETAIL_IMAGE_SIZE = { width: 180, height: 180 };
+const BASE_STAT_FIELDS = ['Defense', 'Damage', 'Support', 'CritRate', 'CritDamage', 'Speed', 'Penetration'];
+const FALLBACK_IMAGE_URL = new URL('../favicon.svg', import.meta.url);
 
 const getElement = (id) => document.getElementById(id);
 
@@ -36,6 +39,58 @@ function formatCellValue(value) {
     return value || '—';
 }
 
+const detailDialog = getElement('outfit-detail');
+
+function openOutfitDetails(row) {
+    getElement('outfit-detail-name').textContent = row[0];
+
+    const image = document.createElement('img');
+    image.width = DETAIL_IMAGE_SIZE.width;
+    image.height = DETAIL_IMAGE_SIZE.height;
+    image.alt = '';
+    image.addEventListener('error', () => {
+        image.src = FALLBACK_IMAGE_URL.href;
+    }, { once: true });
+    image.src = new URL(`${encodeURIComponent(row[0].toLowerCase())}.png`, IMAGE_DIRECTORY_URL).href;
+    getElement('outfit-detail-image').replaceChildren(image);
+
+    const stats = document.createDocumentFragment();
+    for (const field of BASE_STAT_FIELDS) {
+        const index = data.headers.indexOf(field);
+        if (index === -1) continue;
+
+        const stat = document.createElement('div');
+        const name = document.createElement('dt');
+        name.textContent = getColumnLabel(field, index);
+        const value = document.createElement('dd');
+        value.textContent = formatCellValue(row[index]);
+        stat.append(name, value);
+        stats.append(stat);
+    }
+    getElement('outfit-detail-stats').replaceChildren(stats);
+    detailDialog.showModal();
+}
+
+getElement('outfit-detail-close').addEventListener('click', () => detailDialog.close());
+detailDialog.addEventListener('close', () => {
+    const focusedElement = document.activeElement;
+    if (focusedElement instanceof HTMLElement && getElement('outfits').contains(focusedElement)) {
+        focusedElement.blur();
+    }
+});
+detailDialog.addEventListener('click', (event) => {
+    const bounds = detailDialog.getBoundingClientRect();
+    if (event.target === detailDialog && (
+        event.clientX < bounds.left || event.clientX > bounds.right ||
+        event.clientY < bounds.top || event.clientY > bounds.bottom
+    )) {
+        detailDialog.close();
+    }
+});
+window.addEventListener('hashchange', () => {
+    if (detailDialog.open) detailDialog.close();
+});
+
 function renderOutfits() {
     const rows = [...data.rows].sort((left, right) => {
         const comparison = direction * compareValues(left[sortColumn], right[sortColumn]);
@@ -49,10 +104,16 @@ function renderOutfits() {
     const fragment = document.createDocumentFragment();
     rows.forEach(row => {
         const tr = document.createElement('tr');
+        tr.className = 'outfit-row';
+        tr.setAttribute('aria-label', `${row[0]} — open outfit details`);
+        tr.setAttribute('aria-haspopup', 'dialog');
+        tr.setAttribute('aria-controls', 'outfit-detail');
         tr.append(createImageCell(row[0], IMAGE_DIRECTORY_URL, OUTFIT_IMAGE_SIZE));
-        row.forEach(value => {
+        tr.append(createTextCell(row[0]));
+        row.slice(1).forEach(value => {
             tr.append(createTextCell(formatCellValue(value)));
         });
+        tr.addEventListener('click', () => openOutfitDetails(row));
         fragment.append(tr);
     });
     getElement('table-body').replaceChildren(fragment);

@@ -6,10 +6,10 @@
     <meta name="description" content="The community wiki for jedm_nz's Slime Overlay. Browse outfits and find future card, achievement, and command guides.">
     <title>Slime Overlay Wiki</title>
     <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-    <link rel="stylesheet" href="./styles.css?v=8">
-    <script type="module" src="./app.js?v=10"></script>
-    <script type="module" src="./outfits/outfits.js?v=10"></script>
-    <script type="module" src="./cards/cards.js?v=10"></script>
+    <link rel="stylesheet" href="./styles.css">
+    <script type="module" src="./app.js"></script>
+    <script type="module" src="./outfits/outfits.js"></script>
+    <script type="module" src="./cards/cards.js"></script>
 </head>
 <body>
     <a class="skip-link" href="#main">Skip to content</a>
@@ -57,6 +57,12 @@
         </main>
         <footer class="site-footer"><span>SLIME OVERLAY WIKI</span><span>Made for the jedm_nz community.</span></footer>
     </div>
+    <dialog id="outfit-detail" class="outfit-detail" aria-labelledby="outfit-detail-name">
+        <button id="outfit-detail-close" class="detail-close" type="button" aria-label="Close outfit details" autofocus>×</button>
+        <div id="outfit-detail-image" class="detail-image"></div>
+        <h2 id="outfit-detail-name"></h2>
+        <dl id="outfit-detail-stats" class="detail-stats"></dl>
+    </dialog>
     <noscript><p class="noscript">Enable JavaScript to browse outfits, cards, achievements, and commands. You can also <a href="./outfits/outfits.csv">download the outfit data</a>.</p></noscript>
 </body>
 </html>

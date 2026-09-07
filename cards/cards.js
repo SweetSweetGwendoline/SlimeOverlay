@@ -1,5 +1,5 @@
-import { loadCSV, compareValues } from '../csv.js?v=10';
-import { createImageCell, createTextCell, updateSortHeading } from '../table.js?v=10';
+import { loadCSV, compareValues } from '../csv.js';
+import { createImageCell, createTextCell, updateSortHeading } from '../table.js';
 
 const DATA_URL = new URL('./cards.csv', import.meta.url);
 const IMAGE_DIRECTORY_URL = new URL('./', import.meta.url);
